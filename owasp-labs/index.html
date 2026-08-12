@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BREACHLAB — OWASP Top 10 Training Range</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="nav"><div id="nav-root"></div></nav>
+
+<header class="hero">
+  <div class="container" style="max-width:680px;">
+    <div class="eyebrow">Live training range</div>
+    <h1>Break real vulnerabilities.<br>Learn the <span>OWASP Top 10</span> by hand.</h1>
+    <p class="lede">Ten self-contained labs, one per vulnerability class. Every flag is verified server-side — no shortcuts, no answers in the page source.</p>
+    <a id="hero-cta" href="auth/signup.html" class="btn btn-primary">Create an account →</a>
+  </div>
+</header>
+
+<section class="section" id="profile">
+  <div class="container">
+    <div id="profile-section"></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2>Labs</h2>
+        <p>All ten OWASP Top 10 (2021) categories, A01–A10, one lab each.</p>
+      </div>
+    </div>
+    <div class="lab-grid" id="lab-grid"></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2>Leaderboard</h2>
+        <p>Ranked by points earned across cleared labs.</p>
+      </div>
+    </div>
+    <div id="leaderboard-root"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">BREACHLAB — a self-hosted OWASP Top 10 training range. All targets are simulated.</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/profile.js"></script>
+<script>
+  renderNav('home');
+  initHome();
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A02:2021 Cryptographic Failures — BREACHLAB</title>
+<link rel="stylesheet" href="../css/style.css" />
+</head>
+<body data-base="../">
+
+<nav class="nav"><div id="nav-root"></div></nav>
+
+<header class="lab-header">
+  <div class="container">
+    <div class="lab-code mono">A02:2021 · OWASP Top 10</div>
+    <h1>Cryptographic Failures</h1>
+    <p>Sensitive data was protected with encoding instead of encryption, weak unsalted hashing, and a hardcoded key. Recover all three.</p>
+    <div class="step-track" id="step-track"></div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container" style="max-width:760px;">
+    <div id="lab-complete-banner" style="display:none; background:var(--teal-glow); border:1px solid rgba(79,224,196,0.35); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px;">
+      <strong style="color:var(--teal);">Lab cleared.</strong>
+      <span style="color:var(--text-dim); font-size:14px;"> All three flags verified. Check your rank on the <a href="../index.html#profile" style="color:var(--teal); font-weight:600;">home page</a>.</span>
+    </div>
+    <div id="steps-root">
+      <div class="loading-row"><span class="spinner"></span> loading lab environment...</div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">BREACHLAB — a self-hosted OWASP Top 10 training range. All targets are simulated.</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/config.js"></script>
+<script src="../js/supabase-client.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/lab-engine.js"></script>
+<script src="../js/lab2.js"></script>
+<script>
+  renderNav('lab2');
+  LabEngine.init({ labId: 2, steps: LAB2_STEPS, signinPath: '../auth/signin.html' });
+</script>
+</body>
+</html>
