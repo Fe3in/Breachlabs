@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sign up — BREACHLAB</title>
+<link rel="stylesheet" href="../css/style.css" />
+</head>
+<body data-base="../">
+
+<nav class="nav"><div id="nav-root"></div></nav>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+    <h1>Create your account</h1>
+    <p class="sub">Get an operator ID and start on A01.</p>
+
+    <div class="form-msg" id="msg"></div>
+
+    <form id="signup-form">
+      <div class="field">
+        <label for="username">Operator name</label>
+        <input type="text" id="username" required minlength="3" maxlength="24" autocomplete="username" />
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" required autocomplete="email" />
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" required minlength="6" autocomplete="new-password" />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" id="submit-btn">Sign up</button>
+    </form>
+
+    <p class="auth-foot">
+      Already have an account? <a href="signin.html">Sign in</a>
+    </p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/config.js"></script>
+<script src="../js/supabase-client.js"></script>
+<script src="../js/auth.js"></script>
+<script>
+  renderNav('signup');
+
+  const form = document.getElementById('signup-form');
+  const msg = document.getElementById('msg');
+  const btn = document.getElementById('submit-btn');
+
+  function showMsg(text, type) {
+    msg.textContent = text;
+    msg.className = `form-msg show ${type}`;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Creating account...';
+
+    const username = document.getElementById('username').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+
+    const { data, error } = await sb.auth.signUp({
+      email,
+      password,
+      options: { data: { username } },
+    });
+
+    btn.disabled = false;
+    btn.textContent = 'Sign up';
+
+    if (error) {
+      const friendly = /already registered|already exists/i.test(error.message)
+        ? 'That email already has an account. Try signing in instead.'
+        : error.message;
+      showMsg(friendly, 'error');
+      return;
+    }
+
+    if (data.session) {
+      // Email confirmation disabled in project settings — session is live immediately.
+      window.location.href = '../index.html';
+    } else {
+      showMsg('Account created. Check your email to confirm, then sign in.', 'ok');
+      form.reset();
+    }
+  });
+</script>
+</body>
+</html>

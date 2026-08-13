@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sign in — BREACHLAB</title>
+<link rel="stylesheet" href="../css/style.css" />
+</head>
+<body data-base="../">
+
+<nav class="nav"><div id="nav-root"></div></nav>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+    <h1>Sign in</h1>
+    <p class="sub">Continue your run on the range.</p>
+
+    <div class="form-msg" id="msg"></div>
+
+    <form id="signin-form">
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" required autocomplete="email" />
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" required autocomplete="current-password" />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" id="submit-btn">Sign in</button>
+    </form>
+
+    <p class="auth-foot">
+      <a href="forgot-password.html">Forgot password?</a>
+    </p>
+    <p class="auth-foot">
+      No account yet? <a href="signup.html">Sign up</a>
+    </p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/config.js"></script>
+<script src="../js/supabase-client.js"></script>
+<script src="../js/auth.js"></script>
+<script>
+  renderNav('signin');
+
+  const form = document.getElementById('signin-form');
+  const msg = document.getElementById('msg');
+  const btn = document.getElementById('submit-btn');
+
+  function showMsg(text, type) {
+    msg.textContent = text;
+    msg.className = `form-msg show ${type}`;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Signing in...';
+
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+
+    const { error } = await sb.auth.signInWithPassword({ email, password });
+
+    btn.disabled = false;
+    btn.textContent = 'Sign in';
+
+    if (error) {
+      showMsg(error.message, 'error');
+      return;
+    }
+    window.location.href = '../index.html';
+  });
+</script>
+</body>
+</html>

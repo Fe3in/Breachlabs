@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BREACHLAB — OWASP Top 10 Training Range</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="nav"><div id="nav-root"></div></nav>
+
+<header class="hero">
+  <div class="container" style="max-width:680px;">
+    <div class="eyebrow">Live training range</div>
+    <h1>Break real vulnerabilities.<br>Learn the <span>OWASP Top 10</span> by hand.</h1>
+    <p class="lede">Ten self-contained labs, one per vulnerability class. Every flag is verified server-side — no shortcuts, no answers in the page source.</p>
+    <a id="hero-cta" href="auth/signup.html" class="btn btn-primary">Create an account →</a>
+  </div>
+</header>
+
+<section class="section" style="padding-bottom:0;">
+  <div class="container">
+    <div class="intro-panel" style="max-width:920px; margin:0 auto;">
+      <div class="intro-label">Meet the target</div>
+      <p class="intro-summary">
+        Every lab in this range attacks the same fictional company —
+        <strong style="color:var(--text);">ShopFast Inc.</strong>, a mid-size e-commerce and payments
+        platform. As you clear labs, you're mapping out weaknesses across its actual systems: the
+        storefront, the payments arm, the admin console, the CI/CD pipeline, and more. One target,
+        ten different ways in — all under <span class="mono" style="color:var(--accent);">shopfast.io</span>.
+      </p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(210px,1fr)); gap:10px;">
+        <div class="lb-row" style="grid-template-columns:1fr auto;"><div><strong style="font-size:13.5px;">ShopFast Pay</strong><div class="mono" style="font-size:11.5px; color:var(--text-faint);">payments API</div></div><div class="lab-code mono">A01 · A02</div></div>
+        <div class="lb-row" style="grid-template-columns:1fr auto;"><div><strong style="font-size:13.5px;">ShopFast Store</strong><div class="mono" style="font-size:11.5px; color:var(--text-faint);">storefront + search</div></div><div class="lab-code mono">A03 · A06</div></div>
+        <div class="lb-row" style="grid-template-columns:1fr auto;"><div><strong style="font-size:13.5px;">ShopFast Accounts</strong><div class="mono" style="font-size:11.5px; color:var(--text-faint);">auth + password reset</div></div><div class="lab-code mono">A04 · A07</div></div>
+        <div class="lb-row" style="grid-template-columns:1fr auto;"><div><strong style="font-size:13.5px;">Admin Console</strong><div class="mono" style="font-size:11.5px; color:var(--text-faint);">internal tooling</div></div><div class="lab-code mono">A05</div></div>
+        <div class="lb-row" style="grid-template-columns:1fr auto;"><div><strong style="font-size:13.5px;">ShopFast Engineering</strong><div class="mono" style="font-size:11.5px; color:var(--text-faint);">CI/CD pipeline</div></div><div class="lab-code mono">A08</div></div>
+        <div class="lb-row" style="grid-template-columns:1fr auto;"><div><strong style="font-size:13.5px;">ShopFast Monitoring</strong><div class="mono" style="font-size:11.5px; color:var(--text-faint);">logging + alerting</div></div><div class="lab-code mono">A09</div></div>
+        <div class="lb-row" style="grid-template-columns:1fr auto;"><div><strong style="font-size:13.5px;">Orders API</strong><div class="mono" style="font-size:11.5px; color:var(--text-faint);">order lookup service</div></div><div class="lab-code mono">A10</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="profile">
+  <div class="container">
+    <div id="profile-section"></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2>ShopFast systems under test</h2>
+        <p>All ten OWASP Top 10 (2021) categories, A01–A10, one lab each — same company, different system each time.</p>
+      </div>
+    </div>
+    <div class="lab-grid" id="lab-grid"></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2>Leaderboard</h2>
+        <p>Ranked by points earned across cleared labs.</p>
+      </div>
+    </div>
+    <div id="leaderboard-root"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">BREACHLAB — a self-hosted OWASP Top 10 training range. All targets are simulated.</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/profile.js"></script>
+<script>
+  renderNav('home');
+  initHome();
+</script>
+</body>
+</html>
